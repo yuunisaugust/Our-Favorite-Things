@@ -1,0 +1,542 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+        sans-serif;
+    background-color: #fffdf3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 0;
+}
+@font-face {
+    font-family: 'PerpetualSnow';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2508-2@1.0/PermanentSnow.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Mobile First - Default Styles */
+.main-container {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    min-height: 100vh;
+    background-color: #fffdf3;
+    overflow-x: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Background static image */
+.random-static {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    max-height: 1615px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSBiYXNlRnJlcXVlbmN5PSIwLjkiIG51bU9jdGF2ZXM9IjQiIHJlc3VsdD0ibm9pc2UiLz48ZmVDb2xvck1hdHJpeCBpbj0ibm9pc2UiIHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuNiIvPjwvc3ZnPg==");
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+ /* ===========================
+   PHOTO COLLAGE LAYOUT
+=========================== */
+
+/* 📌 모바일 전용 사진 섹션 */
+.photo-stack {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* 사진 간격 */
+    margin-top: 40px;
+    position: relative;
+}
+
+/* 각 사진 래퍼 */
+.photo {
+    width: 100%;
+    display: flex;
+    margin-bottom: -40px;
+}
+
+/* 홀수 사진 = 왼쪽 정렬 */
+.photo:nth-child(odd) {
+    justify-content: flex-start;
+}
+
+/* 짝수 사진 = 오른쪽 정렬 */
+.photo:nth-child(even) {
+    justify-content: flex-end;
+}
+
+/* 사진 박스 */
+.photo-box {
+    width: 60%; 
+    max-width: 280px;
+    aspect-ratio: 3/4; 
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* 개별 이미지 연결 */
+.꽃 {
+    background-image: url("/images/꽃.jpg");
+    aspect-ratio: 3/4;
+}
+
+.디디피 {
+    background-image: url("/images/디디피.jpg");
+    aspect-ratio: 4/3;
+}
+
+.검정치마 {
+    background-image: url("/images/검정치마.jpg");
+    aspect-ratio: 1/1;
+}
+
+.타일러_트리 {
+    background-image: url("/images/타일러_트리.jpg");
+    aspect-ratio: 3/4;
+}
+
+.몽블랑 {
+    background-image: url("/images/몽블랑.jpg");
+    aspect-ratio: 3/4;
+}
+
+.프토 {
+    background-image: url("/images/프토.jpg");
+    aspect-ratio: 4/5;
+}
+
+.핑크 {
+    background-image: url("/images/핑크.jpg");
+    aspect-ratio: 4/3;
+}
+
+.장미 {
+    background-image: url("/images/장미.jpg");
+    aspect-ratio: 3/4;
+}
+
+/* ----- Photo position adjustments ----- */
+.photo-stack .photo:nth-child(1) { margin-top: 0px; }
+.photo-stack .photo:nth-child(2) { margin-top: -20px; }
+.photo-stack .photo:nth-child(3) { margin-top: 30px; }
+.photo-stack .photo:nth-child(4) { margin-top: 50px; }
+.photo-stack .photo:nth-child(5) { margin-top: -50px; }
+.photo-stack .photo:nth-child(6) { margin-top: -80px; }
+.photo-stack .photo:nth-child(7) { margin-top: 90px; }
+.photo-stack .photo:nth-child(8) { margin-top: 60px; justify-content: center; }
+
+
+/* Title Section */
+.title-section {
+    position: absolute;
+    top: 250px;   /* 원하는 Y 위치 */
+    left: 80px;   /* 원하는 X 위치 */
+    z-index: 10;  /* 사진보다 위! */
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;  /* 전체 width 필요 없음 */
+
+}
+
+
+.title-our {
+    font-family: 'PerpetualSnow', serif;
+    font-size: clamp(36px, 9vw, 110px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #000000;
+    margin-left: 30px;
+    padding: 0;
+}
+
+.title-favorite {
+    font-family: 'PerpetualSnow', serif;
+    font-size: clamp(36px, 9vw, 110px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0;
+    padding-left: 90px;
+    margin-top: clamp(10px, 2vw, 28px);
+}
+
+.title-collect {
+    font-family: 'MangyeongSnow', serif;
+    font-size: clamp(36px, 9vw, 110px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0;
+    padding-left: 30px;
+    margin-top: clamp(10px, 2vw, 28px);
+}
+
+.title-our,
+.title-favorite,
+.title-collect {
+    font-family: 'PerpetualSnow', serif !important;
+}
+
+/* Event Info Section */
+.event-info-section {
+    position: relative;
+    width: 100%;
+    max-width: 691px;
+    z-index: 1;
+    margin-top: 40px;
+}
+
+.event-info-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-date {
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(14px, 3vw, 22px)
+    ;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.event-thanks-frame {
+    margin-top: clamp(40px, 8vw, 309px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.event-thanks {
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(14px, 3vw, 22px)
+    ;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #000000;
+    text-align: center;
+    margin-bottom: clamp(20px, 4vw, 50px);
+}
+
+.event-content {
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(14px, 3vw, 22px)
+    ;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #000000;
+    text-align: center;
+}
+
+/* Form Section */
+.form-section {
+    position: relative;
+    width: 100%;
+    max-width: 910px;
+    z-index: 1;
+}
+
+.form-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-field {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: clamp(40px, 8vw, 127px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-field.note-field {
+    width: 80%;
+    max-width: 810px;
+    margin-bottom: 0;
+}
+
+.form-label {
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(16px, 3.2vw, 24px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: #3b3b3b;
+    text-align: center;
+    margin-bottom: clamp(20px, 4vw, 56px);
+}
+
+.form-input-frame {
+    width: 100%;
+    max-width: 298px;
+    height: clamp(50px, 8vw, 67px);
+    background-color: #fdfcf0;
+    border: 1px solid #3b3b3b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: 0 clamp(15px, 3vw, 20px);
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(14px, 3vw, 22px)    ;
+    color: #3b3b3b;
+    outline: none;
+}
+
+.form-textarea-frame {
+    width: 100%;
+    max-width: 910px;
+    min-height: clamp(200px, 40vw, 299px);
+    background-color: #fdfcf0;
+    border: 1px solid #3b3b3b;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: clamp(15px, 3vw, 20px);
+}
+
+.form-textarea {
+    width: 100%;
+    height: 100%;
+    min-height: clamp(200px, 40vw, 299px);
+    border: none;
+    background: transparent;
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(14px, 3vw, 22px);
+    color: #3b3b3b;
+    line-height: 1.2;
+    resize: vertical;
+    outline: none;
+}
+
+/* Submit Button */
+.submit-button-frame {
+    position: relative;
+    width: 100%;
+    max-width: 298px;
+    height: clamp(50px, 8vw, 67px);
+    background-color: rgba(59, 59, 59, 0.7);
+    border: 1px solid #fdfcf0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 1;
+}
+
+.submit-button-frame:hover {
+    background-color: rgba(59, 59, 59, 0.85);
+}
+
+.submit-button {
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(16px, 3vw, 24px)    ;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #fdfcf0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Footer Text */
+.footer-text {
+    position: relative;
+    font-family: "Pretendard", sans-serif;
+    font-size: clamp(14px, 3vw, 22px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: #000000;
+    text-align: center;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+/* Desktop Styles - 768px and above */
+@media (min-width: 768px) {
+    .main-container {
+        position: relative;
+        width: 100%;
+        max-width: 1280px;
+        min-height: 4710px;
+        padding: 0;
+        display: block;
+    }
+
+    /* Background static image */
+    .random-static {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 1280px;
+        height: 1615px;
+    }
+
+
+
+
+    /* Title Section */
+    .title-section {
+        position: absolute;
+        left: 199px;
+        top: 638px;
+        max-width: none;
+    }
+
+    .title-our,
+    .title-favorite,
+    .title-collect {
+        font-size: 144px;
+        line-height: 133.71px;
+    }
+
+    .title-favorite,
+    .title-collect {
+        margin-top: 28px;
+    }
+
+    /* Event Info Section */
+    .event-info-section {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: -145.5px;
+        top: 1866px;
+        width: 691px;
+        max-width: none;
+    }
+
+    .event-date {
+        font-size: 32px;
+        line-height: 50px;
+    }
+
+    .event-thanks-frame {
+        margin-top: 309px;
+        width: 691px;
+    }
+
+    .event-thanks,
+    .event-content {
+        font-size: 32px;
+        line-height: 38.1875px;
+    }
+
+    .event-thanks {
+        margin-bottom: 50px;
+    }
+
+    /* Form Section */
+    .form-section {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: -455px;
+        top: 2463px;
+        width: 910px;
+        max-width: none;
+    }
+
+    .form-field {
+        width: 300px;
+        max-width: none;
+        margin-bottom: 127px;
+    }
+
+    .form-field.note-field {
+        width: 910px;
+        max-width: none;
+    }
+
+    .form-label {
+        font-size: 32px;
+        line-height: 38.1875px;
+        margin-bottom: 56px;
+    }
+
+    .form-input-frame {
+        width: 298px;
+        max-width: none;
+        height: 67px;
+    }
+
+    .form-input {
+        font-size: 32px;
+        padding: 0 20px;
+    }
+
+    .form-textarea-frame {
+        width: 910px;
+        max-width: none;
+        height: 299px;
+        min-height: 299px;
+    }
+
+    .form-textarea {
+        font-size: 32px;
+        line-height: 38.1875px;
+        min-height: 299px;
+    }
+
+    /* Submit Button */
+    .submit-button-frame {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-left: -149px;
+        top: 3976px;
+        width: 298px;
+        max-width: none;
+        height: 67px;
+    }
+
+    .submit-button {
+        font-size: 32px;
+        line-height: 38.1875px;
+    }
+
+    /* Footer Text */
+    .footer-text {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 4140px;
+        font-size: 32px;
+        line-height: 38.1875px;
+    }
+}

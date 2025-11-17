@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Our Favorite Collect</title>
+        <link rel="stylesheet" href="index.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <div class="main-container">
+            <!-- Background static image -->
+            <div class="random-static"></div>
+
+            <!-- PHOTO COLLAGE (NEW) -->
+            <div class="photo-stack">
+                <div class="photo">
+                    <div class="photo-box 꽃"></div>
+                </div>
+
+                <div class="photo">
+                    <div class="photo-box 디디피"></div>
+                </div>
+
+                <div class="photo">
+                    <div class="photo-box 검정치마"></div>
+                </div>
+
+                <div class="photo">
+                    <div class="photo-box 타일러_트리"></div>
+                </div>
+
+                <div class="photo">
+                    <div class="photo-box 몽블랑"></div>
+                </div>
+                <div class="photo">
+                    <div class="photo-box 프토"></div>
+                </div>
+                <div class="photo">
+                    <div class="photo-box 핑크"></div>
+                </div>
+                <div class="photo">
+                    <div class="photo-box 장미"></div>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="title-section">
+                <h1 class="title-our">Our</h1>
+                <h1 class="title-favorite">Favorite</h1>
+                <h1 class="title-collect">Collect</h1>
+            </div>
+
+            <!-- Event Info Section -->
+            <div class="event-info-section">
+                <div class="event-info-frame">
+                    <p class="event-date">
+                        11월 23일 일요일,<br />신설동 타일러에서,<br />11시부터
+                        16시<br />우리의 스물 두번째 생일을 함께하는 초대장을
+                        전해드립니다.
+                    </p>
+
+                    <div class="event-thanks-frame">
+                        <p class="event-thanks">
+                            몇 없는 친구분들께<br />와주셔서 감사하단 말씀
+                            전하며,,<br />간단한 콘텐츠를 준비했읍니다.
+                        </p>
+                        <p class="event-content">
+                            오시는 분들끼리 익명의 편지를 교환하는
+                            컨텐츠인데요,<br />
+                            요즘 드는 생각이나 나누고 싶은 말들 뭐든 좋습니다<br />
+                            써주시면 감사하겠습니다 ㅎ.ㅎ
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+                <div class="form-frame">
+                    <!-- Name Field -->
+                    <div class="form-field">
+                        <label class="form-label">이름</label>
+                        <div class="form-input-frame">
+                            <input id="name" type="text" class="form-input" />
+                        </div>
+                    </div>
+
+                    <!-- Contact Field -->
+                    <div class="form-field">
+                        <label class="form-label">연락처</label>
+                        <div class="form-input-frame">
+                            <input id="phone" type="text" class="form-input" />
+                        </div>
+                    </div>
+
+                    <!-- Time Field -->
+                    <div class="form-field">
+                        <label class="form-label">오시는 시간</label>
+                        <div class="form-input-frame">
+                            <input id="time" type="text" class="form-input" />
+                        </div>
+                    </div>
+
+                    <!-- Song Request Field -->
+                    <div class="form-field">
+                        <label class="form-label">신청곡</label>
+                        <div class="form-input-frame">
+                            <input id="songs" type="text" class="form-input" />
+                        </div>
+                    </div>
+
+                    <!-- Note Field -->
+                    <div class="form-field note-field">
+                        <label class="form-label"
+                            >모르는 누군가에게 전하는 쪽지</label
+                        >
+                        <div class="form-textarea-frame">
+                            <textarea
+                                id="note"
+                                class="form-textarea"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-button-frame">
+                <button class="submit-button" id="submitBtn">보내기</button>
+            </div>
+
+            <!-- Footer Text -->
+            <p class="footer-text">23일에 만나요 히히</p>
+        </div>
+
+        <!-- Supabase -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+        <script>
+            const SUPABASE_URL = "https://trwtmlqauegbrceypacx.supabase.co";
+            const SUPABASE_ANON_KEY =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyd3RtbHFhdWVnYnJjZXlwYWN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMyMTE2OTEsImV4cCI6MjA3ODc4NzY5MX0.UvAVhaFULg-wtZj12v-liSyThW8N26emSUUS7ZMJ8hc";
+
+            const supabase = window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_ANON_KEY
+            );
+
+            const submitBtn = document.getElementById("submitBtn");
+
+            submitBtn.addEventListener("click", async () => {
+                const name = document.getElementById("name").value.trim();
+                const phone = document.getElementById("phone").value.trim();
+                const time = document.getElementById("time").value.trim();
+                const songs = document.getElementById("songs").value.trim();
+                const note = document.getElementById("note").value.trim();
+
+                if (!name || !phone || !time) {
+                    alert("이름 / 연락처 / 시간은 꼭 입력해주세요!");
+                    return;
+                }
+
+                const { data, error } = await supabase.from("Infos").insert([
+                    {
+                        name,
+                        phone,
+                        time,
+                        songs,
+                        note,
+                    },
+                ]);
+
+                if (error) {
+                    console.error(error);
+                    alert("전송 중 문제가 발생했습니다. 다시 작성해주세요ㅠ.ㅠ");
+                    return;
+                }
+
+                alert("전송되었습니다. 곧 만나요!");
+
+                // 입력값 초기화
+                document.getElementById("name").value = "";
+                document.getElementById("phone").value = "";
+                document.getElementById("time").value = "";
+                document.getElementById("songs").value = "";
+                document.getElementById("note").value = "";
+            });
+        </script>
+    </body>
+</html>
